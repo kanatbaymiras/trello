@@ -1,0 +1,99 @@
+{
+  "boards": [
+    {
+      "id": "1",
+      "title": "life"
+    },
+    {
+      "id": "2",
+      "title": "work"
+    }
+  ],
+  "columns": [
+    {
+      "id": "1",
+      "title": "food",
+      "boardId": 1
+    },
+    {
+      "id": "2",
+      "title": "sleep",
+      "boardId": 1
+    },
+    {
+      "id": "3",
+      "title": "project",
+      "boardId": 2
+    },
+    {
+      "id": "4",
+      "title": "schedule",
+      "boardId": 2
+    }
+  ],
+  "cards": [
+    {
+      "id": "1",
+      "title": "Buy groceries",
+      "description": "Milk, eggs, bread and goesss awwaaay",
+      "boardId": 1,
+      "columnId": 1
+    },
+    {
+      "id": "2",
+      "title": "Cook dinner",
+      "description": "Make pasta or salad",
+      "boardId": 1,
+      "columnId": 1
+    },
+    {
+      "id": "3",
+      "title": "Sleep early",
+      "description": "Go to bed by 10 ",
+      "boardId": 1,
+      "columnId": 2
+    },
+    {
+      "id": "4",
+      "title": "Project design",
+      "description": "Finish wireframes",
+      "boardId": 2,
+      "columnId": 3
+    },
+    {
+      "id": "5",
+      "title": "Weekly planning",
+      "description": "Plan meetings and tasks",
+      "boardId": 2,
+      "columnId": 4
+    },
+    {
+      "id": "6",
+      "title": "Code review",
+      "description": "Review teammate's PR",
+      "boardId": 2,
+      "columnId": 3
+    },
+    {
+      "id": 4388,
+      "title": "well made food",
+      "description": "akaracha",
+      "columnId": "1",
+      "boardId": "1"
+    },
+    {
+      "id": 9023,
+      "title": "Eat doner",
+      "description": "super doner",
+      "columnId": "1",
+      "boardId": "1"
+    },
+    {
+      "id": 8834,
+      "title": "Заголовок",
+      "description": "Супер",
+      "columnId": "1",
+      "boardId": "1"
+    }
+  ]
+}
