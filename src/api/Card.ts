@@ -1,7 +1,7 @@
 import axios from "axios";
-import type { Card } from "../types/boards";
+import type { Card, CardDTO } from "../types/boards";
 
-export const fetchCardById = async (id: number) => {
+export const fetchCardById = async (id: string) => {
   try {
     const response = await axios.get(`http://localhost:3001/cards/${id}`);
     return response.data;
@@ -12,8 +12,8 @@ export const fetchCardById = async (id: number) => {
 };
 
 export const fetchCardsByBoardAndColumnId = async (
-  boardId: number,
-  columnId: number
+  boardId: string,
+  columnId: string
 ) => {
   try {
     const response = await axios.get(
@@ -37,9 +37,10 @@ export const fetchCardsByBoardAndColumnId = async (
   }
 };
 
-export const addCardToColumn = async (card: Card) => {
+export const addCardToColumn = async (card: CardDTO) => {
   try {
     const response = await axios.post(`http://localhost:3001/cards`, card);
+    console.log(response.data);
     return response.data;
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -53,7 +54,7 @@ export const addCardToColumn = async (card: Card) => {
 };
 
 export const updateCardDescription = async (
-  id: number,
+  id: string,
   newDescription: string
 ) => {
   try {
@@ -69,4 +70,24 @@ export const updateCardDescription = async (
     console.error("Error in updateCardDescription:", error);
     throw error; //
   }
+};
+
+export const deleteCard = async (id: string) => {
+  const response = await axios.delete(`http://localhost:3001/cards/${id}`);
+  return response.data;
+};
+
+export const updateCard = async (id: string, cardDTO: CardDTO) => {
+  const response = await axios.put(
+    `http://localhost:3001/cards/${id}`,
+    cardDTO
+  );
+  return response.data;
+};
+
+export const updateCardTitle = async (id: string, title: string) => {
+  const card = await fetchCardById(id);
+  card.title = title;
+  const response = await axios.put(`http://localhost:3001/cards/${id}`, title);
+  return response.data;
 };

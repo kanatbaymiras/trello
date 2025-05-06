@@ -1,18 +1,34 @@
 export interface Board {
-  id: number;
+  id: string;
+  title: string;
+}
+
+export interface BoardDTO {
   title: string;
 }
 
 export interface Card {
-  id: number;
+  id: string;
   title: string;
   description: string;
-  columnId: number;
-  boardId: number;
+  columnId: string;
+  boardId: string;
+}
+
+export interface CardDTO {
+  title: string;
+  description: string;
+  columnId: string;
+  boardId: string;
 }
 
 export interface Column {
-  id: number;
+  id: string;
   title: string;
-  boardId: number;
+  boardId: string;
+}
+
+export interface ColumnDTO {
+  title: string;
+  boardId: string;
 }
