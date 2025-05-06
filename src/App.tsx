@@ -1,20 +1,55 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Navigate,
+  useLocation,
+} from "react-router";
 import BoardsList from "./pages/BoardsList";
 import BoardPage from "./pages/BoardPage";
+import LoginPage from "./pages/LoginPage";
+import React from "react";
+
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated");
+  const location = useLocation();
+
+  if (!isAuthenticated) {
+    // Перенаправляем на страницу логина, сохраняя текущий путь для последующего редиректа
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return children;
+};
 
 function App() {
   return (
     <BrowserRouter>
       <div className="app">
         <Routes>
-          {/* Главная страница с досками */}
-          <Route path="/" element={<BoardsList />} />
+          {/* Публичный маршрут для входа */}
+          <Route path="/login" element={<LoginPage />} />
 
-          {/* Страница конкретной доски */}
-          <Route path="/board/:id" element={<BoardPage />} />
+          {/* Защищенные маршруты */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <BoardsList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/board/:id"
+            element={
+              <PrivateRoute>
+                <BoardPage />
+              </PrivateRoute>
+            }
+          />
 
-          {/* Перенаправление всех других URL на главную страницу */}
-          <Route path="*" element={<Navigate to="/" />} />
+          {/* Перенаправление на главную страницу (теперь защищенную) */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
     </BrowserRouter>
